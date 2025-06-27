@@ -1,0 +1,62 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__deep-wiki__read_wiki_contents",
+      "mcp__deep-wiki__ask_question",
+      "mcp__deep-wiki__read_wiki_structure",
+      "mcp__puppeteer__*",
+      "Bash(hostname)",
+      "Bash(ls:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(touch:*)",
+      "Bash(mkdir:*)",
+      "Bash(just:*)",
+      "Bash(busted:*)",
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "Bash(rg:*)",
+      "Bash(rm:*)",
+      "Bash(grep:*)",
+      "Bash(chmod:*)",
+      "Bash(node:*)",
+      "Bash(bun:*)",
+      "Bash(bun run test:*)",
+      "Bash(bun run lint:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run build:*)",
+      "Bash(web-ext:*)",
+      "Bash(run:*)",
+      "Bash(nix-env:*)",
+      "Bash(darwin-rebuild build:*)",
+      "Bash(nix-shell:*)",
+      "Bash(nix search:*)",
+      "Bash(nix develop:*)",
+      "Bash(nix run:*)",
+      "Bash(nix flake:*)",
+      "Bash(nix build:*)"
+    ],
+    "deny": [
+      "Bash(rm:-rf)",
+      "Bash(darwin-rebuild switch:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  },
+  "enabledMcpjsonServers": ["deep-wiki"],
+  "enableAllProjectMcpServers": true,
+  "includeCoAuthoredBy": false,
+  "cleanupPeriodDays": 30,
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  }
+}
+
