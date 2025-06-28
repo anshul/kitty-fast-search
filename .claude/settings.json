@@ -5,7 +5,7 @@
       "mcp__deep-wiki__ask_question",
       "mcp__deep-wiki__read_wiki_structure",
       "mcp__puppeteer__*",
-      "Bash(hostname)",
+      "Bash(cargo:*)",
       "Bash(ls:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",

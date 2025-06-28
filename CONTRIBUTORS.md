@@ -9,15 +9,36 @@ High-performance terminal search plugin for Kitty terminal emulator, built in Ru
 ```
 kitty-fast-search/
 ├── src/                  # Rust source code
-│   ├── main.rs          # Entry point and CLI
+│   ├── lib.rs           # Library entry point and module exports
+│   ├── main.rs          # CLI entry point
 │   ├── search/          # Search engine implementation
+│   │   ├── mod.rs       # Search module exports
+│   │   ├── engine.rs    # Core search engine
+│   │   ├── buffer.rs    # Buffer management
+│   │   └── pattern.rs   # Pattern matching
 │   ├── ui/              # Terminal UI components
+│   │   ├── mod.rs       # UI module exports
+│   │   ├── overlay.rs   # Search overlay UI
+│   │   ├── renderer.rs  # UI rendering
+│   │   └── input.rs     # Input handling
 │   └── kitty/           # Kitty integration layer
+│       ├── mod.rs       # Kitty module exports
+│       ├── client.rs    # Kitty client communication
+│       ├── commands.rs  # Kitty command interface
+│       └── buffer.rs    # Kitty buffer integration
 ├── tests/               # Integration and unit tests
+│   └── integration_tests.rs
 ├── benches/             # Performance benchmarks
+│   └── search_performance.rs
 ├── flake.nix            # Nix development environment
+├── flake.lock           # Nix lockfile
 ├── Cargo.toml           # Rust dependencies
-└── README.md            # Project documentation
+├── Cargo.lock           # Dependency lockfile
+├── README.md            # Project documentation
+├── CONTRIBUTORS.md      # Development guide
+├── AGENTS.md            # Symlink to CONTRIBUTORS.md (for AI agents)
+├── CLAUDE.md            # Symlink to CONTRIBUTORS.md (for Claude)
+└── BENCHMARKS.md        # Performance benchmarks
 ```
 
 ## Development Environment
@@ -154,6 +175,15 @@ test: add large buffer performance benchmarks
 - Write performance-focused code
 - Profile before optimizing
 
+## Build Performance
+
+We prioritize fast build times for developer productivity. When contributing:
+
+- **Minimize dependency features**: Use specific features instead of `"full"` or defaults
+- **Avoid heavy dependencies**: Choose lightweight alternatives when possible
+- **Test build impact**: Run `time cargo build` after adding dependencies
+- **Use `#[allow(dead_code)]`**: For planned API components to avoid warnings
+
 ## Performance Guidelines
 
 ### Optimization Priorities
@@ -218,3 +248,7 @@ cargo criterion
 - [ripgrep Implementation](https://github.com/BurntSushi/ripgrep)
 - [ratatui Examples](https://github.com/ratatui-org/ratatui)
 - [Rust Performance Book](https://nnethercote.github.io/perf-book/)
+
+---
+
+> **Note for AI Agents**: This file is also available as `AGENTS.md` and `CLAUDE.md` (symlinks). All three files reference the same content. Please refer to this comprehensive development guide for project structure, architecture, and contribution guidelines.

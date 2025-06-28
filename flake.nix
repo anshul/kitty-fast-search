@@ -36,6 +36,7 @@
         pkgs.darwin.apple_sdk.frameworks.Security
         pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
         pkgs.libiconv
+        pkgs.llvmPackages.lld  # Fast linker for macOS
       ];
 
       linuxPackages = pkgs.lib.optionals (!isDarwin) [
@@ -43,6 +44,7 @@
         pkgs.openssl
         pkgs.perf-tools
         pkgs.valgrind
+        pkgs.mold  # Fast linker for Linux
       ];
     in {
       devShells.default = pkgs.mkShell {
@@ -85,6 +87,11 @@
           echo "Rust: $(rustc --version)"
           echo "Cargo: $(cargo --version)"
           echo "Kitty: $(kitty --version 2>/dev/null || echo 'Not found - install kitty separately if needed')"
+          if [[ "$OSTYPE" == "linux"* ]]; then
+            echo "Fast Linker: mold ($(mold --version 2>/dev/null | head -1 || echo 'Available'))"
+          else
+            echo "Fast Linker: lld ($(lld --version 2>/dev/null | head -1 || echo 'Available'))"
+          fi
           echo ""
           echo "Available commands:"
           echo "  cargo new kitty-search     # Initialize Rust project"
