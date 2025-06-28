@@ -1,0 +1,36 @@
+# Cargo configuration for faster builds
+
+[build]
+# Use multiple CPU cores for compilation (auto-detect available cores)
+
+# Shared target directory for workspace-like behavior
+target-dir = "target"
+
+# Fast linkers for improved build times (when available)
+# Note: These are commented out to ensure CI compatibility
+# Uncomment locally if you have lld/mold installed for faster builds
+#
+# [target.aarch64-apple-darwin]
+# rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+#
+# [target.x86_64-apple-darwin]
+# rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+#
+# [target.x86_64-unknown-linux-gnu]
+# rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+#
+# [target.aarch64-unknown-linux-gnu]
+# rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
+# Use git dependencies more efficiently
+[net]
+git-fetch-with-cli = true
+
+# Registry optimizations
+[registries.crates-io]
+protocol = "sparse"
+
+# Enable incremental compilation and parallel processing
+[env]
+CARGO_INCREMENTAL = "1"
+RUSTC_WRAPPER = { value = "", relative = true }

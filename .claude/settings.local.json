@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cargo init:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo test)",
+      "Bash(cargo test:*)",
+      "Bash(cargo bench:*)",
+      "Bash(ln:*)",
+      "Bash(time cargo build)",
+      "Bash(time cargo build --release)",
+      "Bash(time cargo test --lib)",
+      "Bash(time cargo test --test integration_tests)",
+      "Bash(time cargo test --verbose)"
+    ],
+    "deny": []
+  }
+}
