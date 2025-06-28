@@ -1,0 +1,82 @@
+[package]
+name = "kitty-fast-search"
+version = "0.1.0"
+edition = "2021"
+authors = ["Anshul"]
+description = "Blazing-fast terminal search plugin for Kitty"
+repository = "https://github.com/anshul/kitty-fast-search"
+license = "MIT"
+keywords = ["kitty", "terminal", "search", "performance"]
+categories = ["command-line-utilities", "text-processing"]
+
+[[bin]]
+name = "kitty-fast-search"
+path = "src/main.rs"
+
+[lib]
+name = "kitty_fast_search"
+path = "src/lib.rs"
+
+[features]
+default = []
+heavy-tests = []
+
+[dependencies]
+# Core search engine
+grep = "0.3"
+regex = "1.10"
+memmap2 = "0.9"
+
+# Terminal UI
+crossterm = "0.27"
+ratatui = "0.24"
+
+# Async runtime and utilities (minimal features for faster builds)
+tokio = { version = "1.0", features = ["rt-multi-thread", "process", "io-util", "time", "macros"] }
+futures = "0.3"
+
+# CLI and configuration
+clap = { version = "4.4", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+dirs = "5.0"
+
+# Error handling and utilities
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = { version = "0.1", default-features = false }
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"], default-features = false }
+
+# Performance optimization
+lru = "0.12"
+rayon = "1.8"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+tempfile = "3.8"
+proptest = "1.4"
+
+[[bench]]
+name = "search_performance"
+harness = false
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+# Faster debug builds
+opt-level = 1
+debug = 1
+incremental = true
+
+[profile.test]
+# Optimize test builds for speed
+opt-level = 1
+debug = 1
+
+[profile.bench]
+debug = true
