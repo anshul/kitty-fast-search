@@ -67,7 +67,14 @@ impl InputHandler {
             KeyCode::Up => Ok(InputAction::NavigateUp),
             KeyCode::Down => Ok(InputAction::NavigateDown),
             KeyCode::Enter => Ok(InputAction::Select),
-            KeyCode::Esc => Ok(InputAction::Exit),
+            KeyCode::Esc => {
+                if self.query.is_empty() {
+                    Ok(InputAction::Exit)
+                } else {
+                    self.clear();
+                    Ok(InputAction::QueryChanged)
+                }
+            }
             _ => Ok(InputAction::None),
         }
     }
@@ -80,6 +87,10 @@ impl InputHandler {
     pub fn clear(&mut self) {
         self.query.clear();
         self.cursor_pos = 0;
+    }
+
+    pub fn query(&self) -> &str {
+        &self.query
     }
 }
 

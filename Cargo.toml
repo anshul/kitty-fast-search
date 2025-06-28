@@ -29,7 +29,6 @@ memmap2 = "0.9"
 
 # Terminal UI
 crossterm = "0.27"
-ratatui = "0.24"
 
 # Async runtime and utilities (minimal features for faster builds)
 tokio = { version = "1.0", features = ["rt-multi-thread", "process", "io-util", "time", "macros"] }

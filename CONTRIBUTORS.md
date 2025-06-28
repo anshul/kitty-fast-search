@@ -60,7 +60,7 @@ cargo new kitty-search --bin
 
 - **Rust Stable** - Latest stable toolchain with rust-analyzer
 - **Performance Tools** - flamegraph, criterion, perf-tools
-- **Terminal Tools** - kitty, crossterm, ratatui
+- **Terminal Tools** - kitty, crossterm
 - **Development Tools** - cargo-watch, cargo-edit, cargo-audit
 
 ## Architecture
@@ -68,7 +68,7 @@ cargo new kitty-search --bin
 ### Core Components
 
 - **Search Engine**: High-performance text search using `grep` crate
-- **Terminal UI**: Floating overlay using `crossterm` + `ratatui`
+- **Terminal UI**: Compact bottom-right overlay using pure `crossterm`
 - **Kitty Integration**: Remote control API communication
 - **Buffer Management**: Memory-mapped I/O with `memmap2`
 
@@ -83,10 +83,9 @@ cargo new kitty-search --bin
 
 ```toml
 [dependencies]
-grep = "0.2"              # ripgrep's search engine
+grep = "0.3"              # ripgrep's search engine
 memmap2 = "0.9"           # Memory-mapped file I/O
 crossterm = "0.27"        # Cross-platform terminal
-ratatui = "0.24"          # Terminal UI framework
 tokio = "1.0"             # Async runtime
 clap = "4.0"              # CLI parsing
 serde = "1.0"             # Serialization
@@ -232,9 +231,9 @@ cargo criterion
 
 ### UI Framework
 
-- **ratatui**: Rich terminal UI components
-- **crossterm**: Cross-platform compatibility
-- **Custom**: Minimal overhead for simple overlay
+- **Pure crossterm**: Minimal overhead compact overlay
+- **Bottom-right positioning**: Non-intrusive search interface
+- **Surgical updates**: Only redraws changed overlay areas
 
 ### Async Strategy
 
@@ -246,7 +245,7 @@ cargo criterion
 
 - [Kitty Remote Control](https://sw.kovidgoyal.net/kitty/remote-control/)
 - [ripgrep Implementation](https://github.com/BurntSushi/ripgrep)
-- [ratatui Examples](https://github.com/ratatui-org/ratatui)
+- [crossterm Documentation](https://docs.rs/crossterm/latest/crossterm/)
 - [Rust Performance Book](https://nnethercote.github.io/perf-book/)
 
 ---

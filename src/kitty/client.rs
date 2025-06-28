@@ -60,6 +60,42 @@ impl KittyClient {
         Ok(())
     }
 
+    pub async fn create_text_marker(&self, text: &str) -> Result<()> {
+        let mut cmd = AsyncCommand::new("kitty");
+        cmd.arg("@").arg("create-marker").arg("text").arg("1").arg(text);
+        
+        if let Some(socket) = &self.socket_path {
+            cmd.arg("--to").arg(socket);
+        }
+
+        let output = cmd.output().await?;
+        
+        if !output.status.success() {
+            return Err(anyhow!("Failed to create marker: {}", 
+                              String::from_utf8_lossy(&output.stderr)));
+        }
+
+        Ok(())
+    }
+
+    pub async fn remove_marker(&self) -> Result<()> {
+        let mut cmd = AsyncCommand::new("kitty");
+        cmd.arg("@").arg("remove-marker");
+        
+        if let Some(socket) = &self.socket_path {
+            cmd.arg("--to").arg(socket);
+        }
+
+        let output = cmd.output().await?;
+        
+        if !output.status.success() {
+            return Err(anyhow!("Failed to remove marker: {}", 
+                              String::from_utf8_lossy(&output.stderr)));
+        }
+
+        Ok(())
+    }
+
     #[allow(dead_code)]
     pub async fn get_window_info(&self) -> Result<Value> {
         let mut cmd = AsyncCommand::new("kitty");

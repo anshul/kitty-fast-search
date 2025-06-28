@@ -11,7 +11,9 @@
       "Bash(time cargo build --release)",
       "Bash(time cargo test --lib)",
       "Bash(time cargo test --test integration_tests)",
-      "Bash(time cargo test --verbose)"
+      "Bash(time cargo test --verbose)",
+      "Bash(kitty @:*)",
+      "Bash(./target/release/kitty-fast-search:*)"
     ],
     "deny": []
   }

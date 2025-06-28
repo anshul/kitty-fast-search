@@ -9,7 +9,7 @@
 ## ✨ Features
 
 - **⚡ Blazing Fast**: Search 1M+ lines in <100ms using ripgrep's engine
-- **🎯 Non-Intrusive**: Floating overlay that never interrupts your workflow  
+- **🎯 Non-Intrusive**: Compact bottom-right overlay that never interrupts your workflow  
 - **🔄 Live Search**: Real-time results as you type, no enter key needed
 - **📊 Massive Buffers**: Handle GB-sized server logs efficiently with memory mapping
 - **🎨 iTerm-like UX**: Familiar search experience with modern performance
@@ -54,8 +54,8 @@ kitty-fast-search --query "error"
 ```
 
 **Keyboard Shortcuts:**
-- `Ctrl+F` - Open search overlay
-- `Escape` - Close search
+- `⌘F` - Open search overlay
+- `Escape` - Clear search (or close if empty)
 - `Enter` - Jump to result
 - `↑/↓` - Navigate results
 
